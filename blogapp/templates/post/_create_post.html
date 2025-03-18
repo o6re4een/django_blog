@@ -1,0 +1,38 @@
+{% extends "main.html" %}  
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title text-center">Создать пост</h3>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_title" class="form-label">Заголовок</label>
+              {{ form.title }}
+            </div>
+            <div class="mb-3">
+              <label for="id_content" class="form-label">Содержание</label>
+              {{ form.content }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Опубликовать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% if form.errors %}
+<div class="alert alert-danger">
+  {% for field, errors in form.errors.items %}
+    {% for error in errors %}
+      <p>{{ error }}</p>
+    {% endfor %}
+  {% endfor %}
+</div>
+{% endif %}

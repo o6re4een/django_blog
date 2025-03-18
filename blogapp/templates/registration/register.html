@@ -1,0 +1,54 @@
+{% extends "main.html" %} 
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title text-center">Регистрация</h3>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            <!-- Отображение ошибок формы -->
+            {% if form.errors %}
+            <div class="alert alert-danger">
+              {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Поля формы -->
+            <div class="mb-3">
+              <label for="id_username" class="form-label">Имя пользователя</label>
+              {{ form.username }}
+            </div>
+            <div class="mb-3">
+              <label for="id_email" class="form-label">Email</label>
+              {{ form.email }}
+            </div>
+            <div class="mb-3">
+              <label for="id_password1" class="form-label">Пароль</label>
+              {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+              <label for="id_password2" class="form-label">Подтвердите пароль</label>
+              {{ form.password2 }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+          </form>
+          <div class="mt-3 text-center">
+            <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

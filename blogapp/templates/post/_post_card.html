@@ -1,0 +1,10 @@
+
+<div class="card h-100">
+    <div class="card-body d-flex flex-column">
+      <h3 class="card-title">{{ post.title|truncatechars:32 }}</h3>
+      <p class="card-text flex-grow-1">{{ post.content|truncatechars:255 }}</p>
+      <a href="{% url 'post_detail' post.id %}" class="btn mt-auto">Read more</a>
+    </div>
+  </div>
+
+
